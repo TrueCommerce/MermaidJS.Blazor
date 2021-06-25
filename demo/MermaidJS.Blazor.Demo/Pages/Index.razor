@@ -1,7 +1,19 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
+<div style="display:flex;">
+    <div>
+        <textarea @bind="diagramDefinition"></textarea>
+    </div>
+    <div>
+        <MermaidDiagram Definition="@diagramDefinition" OnClick="nodeId => lastClickedNode = nodeId" />
+    </div>
+</div>
+<div>
+    Last clicked node: @lastClickedNode
+</div>
 
-Welcome to your new app.
-
-<SurveyPrompt Title="How is Blazor working for you?" />
+@code
+{
+    string diagramDefinition = string.Empty;
+    string lastClickedNode = string.Empty;
+}
