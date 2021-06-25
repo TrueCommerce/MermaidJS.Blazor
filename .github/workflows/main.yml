@@ -1,0 +1,29 @@
+ame: CI
+
+on:
+  push:
+    branches:
+      - release/*
+      - refs/tags/*
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Extract Version Number
+        id: version
+        run: |
+          semver=$(echo ${{github.ref}} | rev | cut -d "/" -f 1 | rev)
+          if [[ "${{github.ref}}" == "release/"* ]]; then semver="${semver}-preview.${{github.run_number}}"; fi
+          echo ::set-output name=semver::$semver
+      
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v1.8.0
+        with:
+          dotnet-version: 5
+
+      - run: dotnet pack ./src/MermaidJS.Blazor/MermaidJS.Blazor.csproj -c Release -o ./dist -p:PackageVersion=${{steps.version.outputs.semver}}
+      - run: dotnet nuget push ./dist/*.nupkg -k '${{secrets.NUGET_API_KEY}}'
