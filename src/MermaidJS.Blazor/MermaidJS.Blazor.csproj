@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <Authors>JoshJohnson, TrueCommercePSG</Authors>
+    <Company>TrueCommerce, Inc</Company>
+    <Product>MermaidJS.Blazor</Product>
+    <Description>A simple MermaidDiagram component for Blazor.</Description>
+    <Copyright>Copyright 2021, TrueCommerce, Inc</Copyright>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.7" />
+  </ItemGroup>
+
+</Project>

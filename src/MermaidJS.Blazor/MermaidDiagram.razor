@@ -1,0 +1,99 @@
+﻿@implements IAsyncDisposable
+
+@inject MermaidDiagramInterop _interop
+
+<div id="@Id"></div>
+@if (!string.IsNullOrWhiteSpace(errorMessage))
+{
+    <p style="color:red;">@errorMessage</p>
+}
+
+
+@code
+{
+    public string Id { get; } = $"mermaid-{Guid.NewGuid()}";
+
+    /// <summary>
+    /// The Mermaid "markup" syntax that should be used to render your diagram.
+    /// </summary>
+    [Parameter]
+    public string Definition { get; set; } = string.Empty;
+
+    /// <summary>
+    /// An event raised when a diagram node is clicked. The ID of the clicked node is provided as a parameter.
+    /// This requires your diagram's "click" directives to use "onClickMermaidNode" as the callback.
+    /// </summary>
+    [Parameter]
+    public EventCallback<string> OnClick { get; set; }
+
+    /// <summary>
+    /// An event raised each time the diagram is rendered.
+    /// </summary>
+    [Parameter]
+    public EventCallback OnRender { get; set; }
+
+    public async ValueTask DisposeAsync()
+    {
+        await _interop.UnregisterComponent(this);
+    }
+
+    [JSInvokable]
+    public async Task OnRenderCompleted()
+    {
+        errorMessage = string.Empty;
+
+        StateHasChanged();
+
+        if (OnRender.HasDelegate)
+        {
+            await OnRender.InvokeAsync();
+        }
+    }
+
+    [JSInvokable]
+    public Task OnRenderFailed(string e)
+    {
+        errorMessage = string.IsNullOrWhiteSpace(Definition) ? string.Empty : e;
+
+        StateHasChanged();
+
+        return Task.CompletedTask;
+    }
+
+    [JSInvokable]
+    public async Task OnClickMermaidNode(string nodeId)
+    {
+        if (OnClick.HasDelegate)
+        {
+            await OnClick.InvokeAsync(nodeId);
+        }
+    }
+
+    DotNetObjectReference<MermaidDiagram>? componentRef = null;
+    string errorMessage = string.Empty;
+
+    async ValueTask BeginRender()
+    {
+        await _interop.BeginRender(this);
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            componentRef = await _interop.RegisterComponent(this);
+
+            await BeginRender();
+        }
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (componentRef is null)
+        {
+            return;
+        }
+
+        await BeginRender();
+    }
+}

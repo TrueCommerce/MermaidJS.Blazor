@@ -1,0 +1,19 @@
+﻿@page "/"
+
+<div style="display:flex;">
+    <div>
+        <textarea @bind="diagramDefinition"></textarea>
+    </div>
+    <div>
+        <MermaidDiagram Definition="@diagramDefinition" OnClick="nodeId => lastClickedNode = nodeId" />
+    </div>
+</div>
+<div>
+    Last clicked node: @lastClickedNode
+</div>
+
+@code
+{
+    string diagramDefinition = string.Empty;
+    string lastClickedNode = string.Empty;
+}
