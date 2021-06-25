@@ -23,7 +23,7 @@ jobs:
       - name: Setup .NET Core SDK
         uses: actions/setup-dotnet@v1.8.0
         with:
-          dotnet-version: 5.0
+          dotnet-version: "5.0"
 
       - run: dotnet pack ./src/MermaidJS.Blazor/MermaidJS.Blazor.csproj -c Release -o ./dist -p:PackageVersion=${{steps.version.outputs.semver}}
       - run: dotnet nuget push ./dist/*.nupkg -k '${{secrets.NUGET_API_KEY}}'
