@@ -25,5 +25,10 @@ jobs:
         with:
           dotnet-version: "5.0"
 
+      - run: dotnet tool install -g Microsoft.Web.LibraryManager.Cli
+      - run: |
+          cd src/MermaidJS.Blazor
+          libman restore
+          cd ../..
       - run: dotnet pack ./src/MermaidJS.Blazor/MermaidJS.Blazor.csproj -c Release -o ./dist -p:PackageVersion=${{steps.version.outputs.semver}}
       - run: dotnet nuget push ./dist/*.nupkg -s 'https://api.nuget.org/v3/index.json' -k '${{secrets.NUGET_API_KEY}}'
