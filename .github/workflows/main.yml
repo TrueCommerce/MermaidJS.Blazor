@@ -4,8 +4,10 @@ on:
   push:
     branches:
       - release/*
-      - refs/tags/*
   workflow_dispatch:
+  release:
+    types:
+      - published
 
 jobs:
   publish:
