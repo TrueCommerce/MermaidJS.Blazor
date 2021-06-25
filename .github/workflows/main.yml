@@ -17,7 +17,7 @@ jobs:
         id: version
         run: |
           semver=$(echo ${{github.ref}} | rev | cut -d "/" -f 1 | rev)
-          if [[ "${{github.ref}}" == "release/"* ]]; then semver="${semver}-preview.${{github.run_number}}"; fi
+          if [[ "${{github.ref}}" == *"/release/"* ]]; then semver="${semver}-preview.${{github.run_number}}"; fi
           echo ::set-output name=semver::$semver
       
       - name: Setup .NET Core SDK
@@ -26,4 +26,4 @@ jobs:
           dotnet-version: "5.0"
 
       - run: dotnet pack ./src/MermaidJS.Blazor/MermaidJS.Blazor.csproj -c Release -o ./dist -p:PackageVersion=${{steps.version.outputs.semver}}
-      - run: dotnet nuget push ./dist/*.nupkg -k '${{secrets.NUGET_API_KEY}}'
+      - run: dotnet nuget push ./dist/*.nupkg -s 'https://api.nuget.org/v3/index.json' -k '${{secrets.NUGET_API_KEY}}'
