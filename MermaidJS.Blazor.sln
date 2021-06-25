@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31025.194
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6436A732-DC19-49E5-94A4-8D5837AD0034}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{4AE5947B-DF02-4073-B088-5F890A64BA9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MermaidJS.Blazor.Demo", "demo\MermaidJS.Blazor.Demo\MermaidJS.Blazor.Demo.csproj", "{0B00860A-AC24-499B-B4A0-24FE02E86E2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MermaidJS.Blazor", "src\MermaidJS.Blazor\MermaidJS.Blazor.csproj", "{B5DDD653-4376-4D0F-880D-5E3E9CE4A8CA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0B00860A-AC24-499B-B4A0-24FE02E86E2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B00860A-AC24-499B-B4A0-24FE02E86E2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B00860A-AC24-499B-B4A0-24FE02E86E2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B00860A-AC24-499B-B4A0-24FE02E86E2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5DDD653-4376-4D0F-880D-5E3E9CE4A8CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5DDD653-4376-4D0F-880D-5E3E9CE4A8CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5DDD653-4376-4D0F-880D-5E3E9CE4A8CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5DDD653-4376-4D0F-880D-5E3E9CE4A8CA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0B00860A-AC24-499B-B4A0-24FE02E86E2D} = {4AE5947B-DF02-4073-B088-5F890A64BA9A}
+		{B5DDD653-4376-4D0F-880D-5E3E9CE4A8CA} = {6436A732-DC19-49E5-94A4-8D5837AD0034}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {95FF5783-C238-4ACA-9E5E-1666FA029617}
+	EndGlobalSection
+EndGlobal
