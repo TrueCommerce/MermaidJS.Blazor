@@ -39,4 +39,13 @@ A simple MermaidDiagram component for Blazor.
       }
   }
   ```
-  
+
+## Handling Node Clicks
+
+To raise node click events back to your blazor component, set your click callback to `onClickMermaidNode`:
+
+```mermaid
+graph TB
+A--B
+click A onClickMermaidNode
+```
