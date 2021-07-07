@@ -2,7 +2,7 @@
 
 @inject MermaidDiagramInterop _interop
 
-<div id="@Id"></div>
+<div id="@Id" class="mermaidjs-blazor-diagram"></div>
 @if (!string.IsNullOrWhiteSpace(errorMessage))
 {
     <p style="color:red;">@errorMessage</p>
@@ -31,6 +31,8 @@
     /// </summary>
     [Parameter]
     public EventCallback OnRender { get; set; }
+
+    string previousDefinition = string.Empty;
 
     public async ValueTask DisposeAsync()
     {
@@ -89,10 +91,12 @@
 
     protected override async Task OnParametersSetAsync()
     {
-        if (componentRef is null)
+        if (componentRef is null || Definition.Equals(previousDefinition))
         {
             return;
         }
+
+        previousDefinition = Definition;
 
         await BeginRender();
     }
