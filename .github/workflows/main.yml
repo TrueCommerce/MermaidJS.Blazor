@@ -1,4 +1,4 @@
-name: CI
+name: Publish to NuGet
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
   release:
     types:
-      - published
+      - released
 
 jobs:
   publish:
