@@ -20,7 +20,11 @@ namespace MermaidJS.Blazor.Demo
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-            builder.Services.AddMermaidJS();
+            builder.Services.AddMermaidJS(options =>
+            {
+                options.MaxTextSize = 100000;
+                options.SecurityLevel = MermaidSecurityLevels.Loose;
+            });
 
             await builder.Build().RunAsync();
         }

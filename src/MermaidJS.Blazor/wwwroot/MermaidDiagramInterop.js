@@ -1,4 +1,5 @@
-﻿function initializeGlobals(options) {
+﻿function initializeGlobals() {
+    console.log("initializeGlobals", window.mermaidDiagramBlazorOptions);
     function loadMermaid() {
         return new Promise((resolve) => {
             if (!window.mermaid) {
@@ -8,7 +9,7 @@
                 script.async = false;
                 script.defer = false;
                 script.onload = () => {
-                    window.mermaid.mermaidAPI.initialize(options);
+                    window.mermaid.mermaidAPI.initialize(window.mermaidDiagramBlazorOptions);
 
                     resolve();
                 };
@@ -70,7 +71,9 @@ export function beginRender(componentId, definition) {
 }
 
 export function registerComponent(componentId, componentRef, options) {
-    initializeGlobals(options).then(() => {
+    window.mermaidDiagramBlazorOptions = window.mermaidDiagramBlazorOptions || options;
+
+    initializeGlobals().then(() => {
         window.mermaidDiagramBlazorComponents.set(componentId, componentRef);
     });
 }

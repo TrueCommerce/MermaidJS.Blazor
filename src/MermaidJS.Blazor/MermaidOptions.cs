@@ -46,6 +46,6 @@ namespace MermaidJS.Blazor
         /// <summary>
         /// Name of a pre-defined MermaidJS theme.
         /// </summary>
-        public string? Theme { get; set; }
+        public string Theme { get; set; } = "dark";
     }
 }
