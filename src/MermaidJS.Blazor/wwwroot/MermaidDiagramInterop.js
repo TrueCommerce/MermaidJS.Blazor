@@ -1,4 +1,4 @@
-﻿function initializeGlobals() {
+﻿function initializeGlobals(options) {
     function loadMermaid() {
         return new Promise((resolve) => {
             if (!window.mermaid) {
@@ -8,7 +8,7 @@
                 script.async = false;
                 script.defer = false;
                 script.onload = () => {
-                    window.mermaid.mermaidAPI.initialize({ securityLevel: "loose" });
+                    window.mermaid.mermaidAPI.initialize(options);
 
                     resolve();
                 };
@@ -69,8 +69,8 @@ export function beginRender(componentId, definition) {
     });
 }
 
-export function registerComponent(componentId, componentRef) {
-    initializeGlobals().then(() => {
+export function registerComponent(componentId, componentRef, options) {
+    initializeGlobals(options).then(() => {
         window.mermaidDiagramBlazorComponents.set(componentId, componentRef);
     });
 }

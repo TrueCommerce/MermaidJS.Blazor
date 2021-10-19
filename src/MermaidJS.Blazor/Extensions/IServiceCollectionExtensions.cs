@@ -1,4 +1,6 @@
-﻿using MermaidJS.Blazor;
+﻿using System;
+
+using MermaidJS.Blazor;
 using MermaidJS.Blazor.Internal;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -8,9 +10,18 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <summary>
         /// Adds the necessary services for using the <see cref="MermaidDiagram"/> component.
         /// </summary>
-        public static IServiceCollection AddMermaidJS(this IServiceCollection services)
+        public static IServiceCollection AddMermaidJS(this IServiceCollection services, Action<MermaidOptions>? configure = default)
         {
-            return services.AddTransient<MermaidDiagramInterop>();
+            return services
+                .AddOptions()
+                .Configure<MermaidOptions>(options =>
+                {
+                    if (configure is not null)
+                    {
+                        configure(options);
+                    }
+                })
+                .AddTransient<MermaidDiagramInterop>();
         }
     }
 }

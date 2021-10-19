@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
+using Microsoft.Extensions.Options;
 using Microsoft.JSInterop;
 
 namespace MermaidJS.Blazor.Internal
@@ -8,11 +9,13 @@ namespace MermaidJS.Blazor.Internal
     internal class MermaidDiagramInterop
     {
         private readonly IJSRuntime _jsRuntime;
+        private readonly IOptionsSnapshot<MermaidOptions> _mermaidOptions;
         private readonly Lazy<Task<IJSObjectReference>> _jsModule;
 
-        public MermaidDiagramInterop(IJSRuntime jsRuntime)
+        public MermaidDiagramInterop(IJSRuntime jsRuntime, IOptionsSnapshot<MermaidOptions> mermaidOptions)
         {
             _jsRuntime = jsRuntime;
+            _mermaidOptions = mermaidOptions;
             _jsModule = new(() => jsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/MermaidJS.Blazor/MermaidDiagramInterop.js").AsTask());
         }
 
@@ -28,7 +31,7 @@ namespace MermaidJS.Blazor.Internal
             var jsModule = await _jsModule.Value;
             var componentRef = DotNetObjectReference.Create(component);
 
-            await jsModule.InvokeVoidAsync("registerComponent", component.Id, componentRef);
+            await jsModule.InvokeVoidAsync("registerComponent", component.Id, componentRef, _mermaidOptions.Value);
 
             return componentRef;
         }
