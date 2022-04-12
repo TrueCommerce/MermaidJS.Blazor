@@ -1,0 +1,15 @@
+.wrapper {
+    display: flex;
+}
+
+.wrapper > div
+{
+    width: 20rem;
+}
+
+.wrapper > div > textarea {
+    width: 20rem;
+    height: 8rem;
+    font-family: monospace;
+    font-size: small;
+}
