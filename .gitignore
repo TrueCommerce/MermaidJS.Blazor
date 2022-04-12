@@ -351,3 +351,9 @@ MigrationBackup/
 
 # Client-Side Libraries
 **/wwwroot/lib/
+
+# Rider
+.idea/
+
+# vscode
+.vscode/

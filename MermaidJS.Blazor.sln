@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MermaidJS.Blazor.Demo", "de
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MermaidJS.Blazor", "src\MermaidJS.Blazor\MermaidJS.Blazor.csproj", "{B5DDD653-4376-4D0F-880D-5E3E9CE4A8CA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MermaidJS.Blazor.Server.Demo", "demo\MermaidJS.Blazor.Server.Demo\MermaidJS.Blazor.Server.Demo.csproj", "{887D025C-1F8D-448F-BE3D-EA57ACCDC277}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{B5DDD653-4376-4D0F-880D-5E3E9CE4A8CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5DDD653-4376-4D0F-880D-5E3E9CE4A8CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5DDD653-4376-4D0F-880D-5E3E9CE4A8CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{887D025C-1F8D-448F-BE3D-EA57ACCDC277}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{887D025C-1F8D-448F-BE3D-EA57ACCDC277}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{887D025C-1F8D-448F-BE3D-EA57ACCDC277}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{887D025C-1F8D-448F-BE3D-EA57ACCDC277}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{0B00860A-AC24-499B-B4A0-24FE02E86E2D} = {4AE5947B-DF02-4073-B088-5F890A64BA9A}
 		{B5DDD653-4376-4D0F-880D-5E3E9CE4A8CA} = {6436A732-DC19-49E5-94A4-8D5837AD0034}
+		{887D025C-1F8D-448F-BE3D-EA57ACCDC277} = {4AE5947B-DF02-4073-B088-5F890A64BA9A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {95FF5783-C238-4ACA-9E5E-1666FA029617}

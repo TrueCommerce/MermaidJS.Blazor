@@ -1,0 +1,36 @@
+﻿@page "/"
+
+
+<div class="wrapper">
+    <div>
+        <h3>Diagram definition</h3>
+        <textarea @bind="diagramDefinition"></textarea>
+        <button @onclick="Refresh" class="btn-primary">Refresh UI</button>
+    </div>
+    <div>
+        <h3>Mermaid diagram</h3>
+        <MermaidDiagram Definition="@diagramDefinition" OnClick="nodeId => lastClickedNode = nodeId"/>
+    </div>
+</div>
+<div>
+    Last clicked node: @lastClickedNode
+</div>
+
+
+<div>
+    <h3>So what is this?</h3>
+    <p>This is a simple Blazor Server demo using the MermaidDiagram component.</p>
+    <p>To allow for click events to be handled, you have to set the SecurityLevel to 'Loose' in when calling AddMermaidJs(...).</p>
+</div>
+
+@code
+{
+    string diagramDefinition = "graph TB\n    A-->B\n    click A onClickMermaidNode\n    click B onClickMermaidNode";
+    string lastClickedNode = string.Empty;
+
+
+    private void Refresh()
+    {
+        StateHasChanged();
+    }
+}
