@@ -49,6 +49,6 @@ To raise node click events back to your blazor component, set your click callbac
 
 ```mermaid
 graph TB
-A--B
+A-->B
 click A onClickMermaidNode
 ```
