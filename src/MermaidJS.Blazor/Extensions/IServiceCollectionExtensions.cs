@@ -1,10 +1,11 @@
-﻿using System;
-
-using MermaidJS.Blazor;
+﻿using MermaidJS.Blazor;
 using MermaidJS.Blazor.Internal;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
+    /// <summary>
+    /// MermaidJS service collection extensions
+    /// </summary>
     public static class IServiceCollectionExtensions
     {
         /// <summary>

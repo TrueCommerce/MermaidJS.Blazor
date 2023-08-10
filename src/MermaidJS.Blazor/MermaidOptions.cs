@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace MermaidJS.Blazor
+﻿namespace MermaidJS.Blazor
 {
     /// <summary>
     /// Options used when initializing MermaidJS.
@@ -39,7 +36,7 @@ namespace MermaidJS.Blazor
         public string SecurityLevel { get; set; } = "strict";
 
         /// <summary>
-        /// Dictates whether mermaind starts on Page load.
+        /// Dictates whether mermaid starts on Page load.
         /// </summary>
         public bool StartOnLoad { get; set; } = true;
 

@@ -1,32 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-
+using MermaidJS.Blazor;
+using MermaidJS.Blazor.Demo;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
-namespace MermaidJS.Blazor.Demo
+var builder = WebAssemblyHostBuilder.CreateDefault(args);
+builder.RootComponents.Add<App>("#app");
+
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+
+builder.Services.AddMermaidJS(options =>
 {
-    public class Program
-    {
-        public static async Task Main(string[] args)
-        {
-            var builder = WebAssemblyHostBuilder.CreateDefault(args);
-            builder.RootComponents.Add<App>("#app");
+    options.MaxTextSize = 100000;
+    options.SecurityLevel = MermaidSecurityLevels.Loose;
+});
 
-            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-
-            builder.Services.AddMermaidJS(options =>
-            {
-                options.MaxTextSize = 100000;
-                options.SecurityLevel = MermaidSecurityLevels.Loose;
-            });
-
-            await builder.Build().RunAsync();
-        }
-    }
-}
+await builder.Build().RunAsync();

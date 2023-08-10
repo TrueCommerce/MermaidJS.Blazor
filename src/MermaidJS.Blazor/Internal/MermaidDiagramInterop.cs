@@ -1,20 +1,15 @@
-﻿using System;
-using System.Threading.Tasks;
-
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using Microsoft.JSInterop;
 
 namespace MermaidJS.Blazor.Internal
 {
     internal class MermaidDiagramInterop
     {
-        private readonly IJSRuntime _jsRuntime;
         private readonly IOptionsSnapshot<MermaidOptions> _mermaidOptions;
         private readonly Lazy<Task<IJSObjectReference>> _jsModule;
 
         public MermaidDiagramInterop(IJSRuntime jsRuntime, IOptionsSnapshot<MermaidOptions> mermaidOptions)
         {
-            _jsRuntime = jsRuntime;
             _mermaidOptions = mermaidOptions;
             _jsModule = new(() => jsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/MermaidJS.Blazor/MermaidDiagramInterop.js").AsTask());
         }
