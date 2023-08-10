@@ -351,3 +351,6 @@ MigrationBackup/
 
 # Client-Side Libraries
 **/wwwroot/lib/
+
+# vscode
+.vscode/
