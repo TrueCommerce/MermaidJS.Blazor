@@ -3,7 +3,7 @@
   "defaultProvider": "cdnjs",
   "libraries": [
     {
-      "library": "mermaid@8.13.2",
+      "library": "mermaid@10.6.1",
       "destination": "wwwroot/lib/mermaid"
     }
   ]

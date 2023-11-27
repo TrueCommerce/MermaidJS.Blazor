@@ -9,7 +9,7 @@
                 script.async = false;
                 script.defer = false;
                 script.onload = () => {
-                    window.mermaid.mermaidAPI.initialize(window.mermaidDiagramBlazorOptions);
+                    window.mermaid.initialize(window.mermaidDiagramBlazorOptions);
 
                     resolve();
                 };
@@ -52,14 +52,15 @@ export function beginRender(componentId, definition) {
             return;
         }
 
+        if (!definition) {
+            return;
+        }
+
         try {
-            window.mermaid.mermaidAPI.render(`${componentId}-svg`, definition, (svg, bind) => {
+            mermaid.render(`${componentId}-svg`, definition).then(({ svg, bindFunctions }) => {
                 const host = document.getElementById(componentId);
-
                 host.innerHTML = svg;
-
-                bind(host);
-
+                bindFunctions?.(host);
                 componentRef.invokeMethodAsync("OnRenderCompleted");
             });
         }
